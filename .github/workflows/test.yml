@@ -1,0 +1,17 @@
+name: Test portfolio projects
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest discover -s projects/evidence-rag/tests -v
+      - run: python projects/prompt-evaluator/app.py
+      - run: python projects/mini-rag/app.py "How should RAG work?"

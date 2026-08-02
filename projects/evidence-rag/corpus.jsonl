@@ -1,0 +1,3 @@
+{"id": "rag-basics", "title": "RAG basics", "text": "A retrieval-augmented generation system should retrieve relevant source passages before a language model generates an answer. Retrieved context helps ground an answer in available evidence."}
+{"id": "evaluation", "title": "RAG evaluation", "text": "A RAG evaluation should measure retrieval relevance, citation correctness, answer groundedness, and abstention behavior for unanswerable questions."}
+{"id": "safety", "title": "Human review", "text": "Human review is appropriate before an AI system takes high-impact actions such as submitting job applications or making consequential decisions."}
