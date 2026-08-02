@@ -1,0 +1,26 @@
+{
+  "candidate_name": "Your name",
+  "remote_only": true,
+  "target_tracks": ["junior", "senior"],
+  "target_titles": [
+    "AI Engineer",
+    "Machine Learning Engineer",
+    "Applied AI Engineer",
+    "LLM Engineer",
+    "Data Scientist",
+    "Applied Scientist",
+    "AI Solutions Architect"
+  ],
+  "skills": ["Python", "JavaScript", "Generative AI", "LLM applications"],
+  "credentials": [
+    {
+      "name": "The AI Engineer Path",
+      "provider": "Scrimba",
+      "url": "https://scrimba.com/the-ai-engineer-path-c02v",
+      "status": "completed"
+    }
+  ],
+  "portfolio_url": "",
+  "compensation_note": "",
+  "notes": "Add only experience and skills you can substantiate."
+}

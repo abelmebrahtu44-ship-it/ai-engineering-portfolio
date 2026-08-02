@@ -1,0 +1,4 @@
+{"question": "What should a RAG system retrieve before answering?", "answerable": true, "expected_source": "rag-basics"}
+{"question": "Which RAG qualities should be evaluated?", "answerable": true, "expected_source": "evaluation"}
+{"question": "When is human review appropriate?", "answerable": true, "expected_source": "safety"}
+{"question": "What is the weather on Mars today?", "answerable": false, "expected_source": null}

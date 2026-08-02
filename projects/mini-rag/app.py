@@ -1,29 +1,47 @@
-"""Dependency-free TF-IDF retrieval component for a small RAG prototype."""
-import math, re, sys
+"""A dependency-free retrieval component for a small RAG prototype."""
+from __future__ import annotations
+
+import math
+import re
+import sys
 from collections import Counter
 
 DOCUMENTS = [
-    "RAG retrieves relevant source passages before a language model writes an answer.",
-    "Chunking splits long documents into focused passages for retrieval.",
-    "Evaluation should test relevance, groundedness, and evidence support.",
+    "RAG systems retrieve relevant source passages before a language model writes an answer.",
+    "Chunking splits long documents into smaller passages so a retriever can return focused context.",
+    "Evaluation should test relevance, groundedness, and whether an answer is supported by retrieved evidence.",
+    "Human review is important when AI output influences job applications or other high-impact decisions."
 ]
 
-def tokens(text):
+
+def tokens(text: str) -> list[str]:
     return re.findall(r"[a-z]{2,}", text.lower())
 
-def vector(text):
-    words = tokens(text); counts = Counter(words); total = len(words) or 1
-    return {word: (count / total) * math.log((len(DOCUMENTS)+1)/(1+sum(word in tokens(doc) for doc in DOCUMENTS))+1) for word, count in counts.items()}
 
-def cosine(a, b):
-    numerator = sum(value * b.get(word, 0) for word, value in a.items())
-    size = math.sqrt(sum(x*x for x in a.values())) * math.sqrt(sum(x*x for x in b.values()))
-    return numerator / size if size else 0
+def vector(text: str, corpus: list[str]) -> dict[str, float]:
+    words = tokens(text)
+    counts = Counter(words)
+    total = len(words) or 1
+    return {
+        word: (count / total) * math.log((len(corpus) + 1) / (1 + sum(word in tokens(doc) for doc in corpus)) + 1)
+        for word, count in counts.items()
+    }
 
-def retrieve(question, limit=2):
-    query = vector(question)
-    return sorted([(cosine(query, vector(doc)), doc) for doc in DOCUMENTS], reverse=True)[:limit]
 
-question = " ".join(sys.argv[1:]) or "How should I evaluate a RAG system?"
-for score, passage in retrieve(question):
-    print(f"[{score:.3f}] {passage}")
+def cosine(left: dict[str, float], right: dict[str, float]) -> float:
+    numerator = sum(value * right.get(word, 0) for word, value in left.items())
+    magnitude = math.sqrt(sum(value * value for value in left.values())) * math.sqrt(sum(value * value for value in right.values()))
+    return numerator / magnitude if magnitude else 0.0
+
+
+def retrieve(question: str, limit: int = 2):
+    query = vector(question, DOCUMENTS)
+    scored = [(cosine(query, vector(document, DOCUMENTS)), document) for document in DOCUMENTS]
+    return sorted(scored, reverse=True)[:limit]
+
+
+if __name__ == "__main__":
+    question = " ".join(sys.argv[1:]) or "How should I evaluate a RAG system?"
+    print(f"Question: {question}\n\nRetrieved context:")
+    for score, passage in retrieve(question):
+        print(f"- [{score:.3f}] {passage}")
