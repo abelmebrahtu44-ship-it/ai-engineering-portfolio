@@ -1,44 +1,34 @@
-# Remote AI Job Assistant
+# AI Projects Portfolio
 
-A privacy-conscious, approval-first starter for a remote AI job search. It helps you keep a focused pipeline for junior and senior AI roles, rank opportunities, and record tailored application drafts.
+Three runnable, dependency-free Python projects that demonstrate practical AI-engineering concepts. They are designed as clear portfolio pieces to extend after completing Scrimba's AI Engineer Path.
 
-## What it does
+## Projects
 
-- Stores an editable candidate profile, including your completed Scrimba AI Engineer Path.
-- Ranks imported openings against role titles, remote eligibility, skills, and seniority.
-- Tracks applications from `discovered` through `submitted`.
-- Refuses to mark an application as submitted unless you explicitly approve it.
+| Project | Demonstrates | Run |
+| --- | --- | --- |
+| [Remote AI Job Assistant](./assistant.py) | match scoring, workflow state machines, human approval gates | `python3 assistant.py rank examples/jobs.json` |
+| [Mini RAG Retriever](./projects/mini-rag) | document chunking, TF-IDF retrieval, cosine similarity | `python3 projects/mini-rag/app.py "How do I prepare for an AI interview?"` |
+| [Prompt Evaluation Harness](./projects/prompt-evaluator) | structured test cases, automated quality checks, pass-rate reporting | `python3 projects/prompt-evaluator/app.py` |
 
-It deliberately does **not** automate website logins or submit applications. A human review and final confirmation are required for every application.
+## Setup
 
-## Quick start
+Python 3.10+ is the only requirement. Each project runs entirely locally with no API keys or third-party packages.
 
-Requires Python 3.10+ and no third-party packages.
+## Remote AI Job Assistant
+
+An approval-first job-search workflow that ranks junior and senior remote AI openings against an editable candidate profile. It keeps personal application history in the ignored `data/` directory and prevents an application from being marked submitted until you explicitly approve it.
 
 ```bash
 python3 assistant.py rank examples/jobs.json
 python3 assistant.py add-example
-python3 assistant.py list
 python3 assistant.py approve 1
 python3 assistant.py submit 1
 ```
 
-The commands create a local `data/applications.json` file (ignored by Git) so personal application history stays on your machine.
+Edit [`config/profile.json`](config/profile.json) with only skills and experience you can substantiate.
 
-## Customize your search
+## Portfolio roadmap
 
-Edit [`config/profile.json`](config/profile.json) to add your résumé-backed skills, years of experience, portfolio, compensation range, and preferred titles. Do not claim a skill or seniority you cannot support in an interview.
-
-To search live sources, use the ranked results as a review queue: export jobs from sources you are authorized to use, place them in the JSON format shown in [`examples/jobs.json`](examples/jobs.json), then run `rank`.
-
-## Status flow
-
-`discovered` → `drafting` → `ready_for_review` → `approved` → `submitted`
-
-Only the `approve` command can move a job to `approved`, and only an approved job can be marked `submitted`.
-
-## Next integrations
-
-- Add permitted job-board/API connectors.
-- Generate résumé and cover-letter drafts from user-provided source materials.
-- Add a small web dashboard and calendar follow-ups.
+- Replace the local RAG example with embeddings and a vector database.
+- Connect the job assistant to permitted job-board APIs.
+- Add LLM-backed response generation and human-reviewed prompt evaluation.
