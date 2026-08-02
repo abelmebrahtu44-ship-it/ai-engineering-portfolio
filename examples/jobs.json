@@ -1,0 +1,22 @@
+[
+  {
+    "id": "sample-junior-ai-engineer",
+    "company": "Example Labs",
+    "title": "Junior AI Engineer",
+    "location": "Remote — United States",
+    "remote": true,
+    "seniority": "junior",
+    "skills": ["Python", "LLM applications", "JavaScript"],
+    "url": "https://example.com/jobs/junior-ai-engineer"
+  },
+  {
+    "id": "sample-staff-ml-engineer",
+    "company": "Example Labs",
+    "title": "Staff Machine Learning Engineer",
+    "location": "Remote",
+    "remote": true,
+    "seniority": "senior",
+    "skills": ["Python", "MLOps", "distributed systems"],
+    "url": "https://example.com/jobs/staff-ml-engineer"
+  }
+]
