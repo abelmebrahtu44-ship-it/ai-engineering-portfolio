@@ -1,6 +1,6 @@
-# AI Projects Portfolio
+# AI Engineering Portfolio
 
-Three runnable, dependency-free Python projects that demonstrate practical AI-engineering concepts. They are designed as clear portfolio pieces to extend after completing Scrimba's AI Engineer Path.
+Hands-on, dependency-free Python projects demonstrating practical AI-engineering skills: retrieval-augmented generation, evaluation, workflow safety, and match scoring. Built as a recruiter-friendly portfolio following completion of Scrimba's AI Engineer Path.
 
 ## Projects
 
@@ -26,6 +26,13 @@ python3 assistant.py submit 1
 ```
 
 Edit [`config/profile.json`](config/profile.json) with only skills and experience you can substantiate.
+
+## Skills demonstrated
+
+- Python application development and command-line tooling
+- Retrieval-augmented generation foundations: chunking, TF-IDF, and cosine similarity
+- AI evaluation: structured test cases and repeatable quality checks
+- Responsible AI workflows: human approval gates for high-impact actions
 
 ## Portfolio roadmap
 
